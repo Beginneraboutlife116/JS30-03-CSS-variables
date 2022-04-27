@@ -5,38 +5,48 @@
 *, *::before, *::after {
   box-sizing: border-box;
 }
+
 * {
   margin: 0;
 }
+
 html:focus-within {
   scroll-behavior: smooth;
 }
+
 html, body {
   height: 100%;
 }
+
 body {
   line-height: calc(2px + 2ex + 2px);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeSpeed;
 }
-ul[role='list'],
-ol[role='list'] {
+
+ul[role=list],
+ol[role=list] {
   list-style: none;
 }
+
 a:not([class]) {
   -webkit-text-decoration-skip-ink: all;
-          text-decoration-skip-ink: all;
+  text-decoration-skip-ink: all;
 }
+
 img, picture, video, canvas, svg {
   display: block;
   max-width: 100%;
 }
+
 input, button, textarea, select {
   font: inherit;
 }
+
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
 }
+
 /* Using below when you use framework */
 /* #root, #__next {
   isolation: isolate;
@@ -44,37 +54,43 @@ p, h1, h2, h3, h4, h5, h6 {
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
-   scroll-behavior: auto;
+    scroll-behavior: auto;
   }
+
   *,
-  *::before,
-  *::after {
+*::before,
+*::after {
     -webkit-animation-duration: 0.01ms !important;
-            animation-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
     -webkit-animation-iteration-count: 1 !important;
-            animation-iteration-count: 1 !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
 }
-
 :root {
   --min-width: 8rem;
   --max-width: 15rem;
   --width: clamp(var(--min-width), 30vw, var(--max-width));
 }
+
+@keyframes shinny {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .wrapper {
   display: flex;
-  background-color: var(--bg-color, rgb(238, 238, 238));
+  background-color: var(--bg-color, #fff);
   height: 100%;
   perspective: 75rem;
   perspective-origin: 50% 50%;
   position: relative;
   cursor: var(--pointer-style, grab);
 }
-
-/** 我要做跟隨滑鼠移動的追蹤樣式 */
-/** 我要做hover有animation轉動 */
 
 .cube {
   width: var(--width);
@@ -86,30 +102,46 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 .cube__side {
   --cube-translateZ: translateZ(calc(var(--width) / 2));
-
   position: absolute;
   width: 100%;
   height: 100%;
-  opacity: var(--opacity, 0.5);
   border: 2.5px solid var(--border-clr, rgb(0, 0, 0));
   inset: 0;
-  background-color: var(--cube-bg-clr, rgb(255, 255, 255));
+  background-color: rgba(var(--red, 255), var(--green, 255), var(--blue, 255), var(--alpha, 0.5));
+  cursor: var(--cube-pointer, pointer);
 }
+.cube__side::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: 0px 0px 20px 10px rgb(var(--red, 255), var(--green, 255), var(--blue, 255));
+  opacity: 0;
+  animation: shinny var(--animation-duration, 0s) ease-in-out 0s infinite alternate;
+}
+.cube__side:focus::after {
+  --animation-duration: 0.5s ;
+}
+
 .front {
   transform: var(--cube-translateZ);
 }
+
 .back {
   transform: rotateY(180deg) var(--cube-translateZ);
 }
+
 .left {
   transform: rotateY(-90deg) var(--cube-translateZ);
 }
+
 .right {
   transform: rotateY(90deg) var(--cube-translateZ);
 }
+
 .top {
   transform: rotateX(90deg) var(--cube-translateZ);
 }
+
 .bottom {
   transform: rotateX(-90deg) var(--cube-translateZ);
 }
@@ -119,3 +151,5 @@ p, h1, h2, h3, h4, h5, h6 {
   position: absolute;
   inset: auto auto 3% 3%;
 }
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,5 @@
+:root {
+  --min-width: 8rem;
+  --max-width: 15rem;
+  --width: clamp(var(--min-width), 30vw, var(--max-width));
+}

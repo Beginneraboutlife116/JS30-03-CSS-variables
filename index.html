@@ -6,37 +6,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- default dark mode/light mode depend on user setting -->
     <!-- <meta name="color-scheme" content="dark light" /> -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <title>03-css-variable</title>
   </head>
   <body>
     <div class="wrapper">
       <div class="cube">
-        <div class="cube__side front"></div>
-        <div class="cube__side right"></div>
-        <div class="cube__side left"></div>
-        <div class="cube__side back"></div>
-        <div class="cube__side top"></div>
-        <div class="cube__side bottom"></div>
+        <button
+          aria-label="front side of the cube"
+          class="cube__side front"
+        ></button>
+        <button
+          aria-label="right side of the cube"
+          class="cube__side right"
+        ></button>
+        <button
+          aria-label="left side of the cube"
+          class="cube__side left"
+        ></button>
+        <button
+          aria-label="back side of the cube"
+          class="cube__side back"
+        ></button>
+        <button
+          aria-label="top side of the cube"
+          class="cube__side top"
+        ></button>
+        <button
+          aria-label="bottom side of the cube"
+          class="cube__side bottom"
+        ></button>
       </div>
 
       <aside class="controller">
         <ul class="flex-container">
           <li class="flex__item">
             <label for="red" class="controller__name red">R</label>
-            <input id="red" type="range" class="controller__bar" max="255" min="0" />
+            <input
+              id="red"
+              type="range"
+              class="controller__bar"
+              max="255"
+              min="0"
+            />
           </li>
           <li class="flex__item">
             <label for="green" class="controller__name green">G</label>
-            <input id="green" type="range" class="controller__bar" max="255" min="0" />
+            <input
+              id="green"
+              type="range"
+              class="controller__bar"
+              max="255"
+              min="0"
+            />
           </li>
           <li class="flex__item">
             <label for="blue" class="controller__name blue">B</label>
-            <input id="blue" type="range" class="controller__bar" max="255" min="0" />
+            <input
+              id="blue"
+              type="range"
+              class="controller__bar"
+              max="255"
+              min="0"
+            />
           </li>
           <li class="flex__item">
             <label for="alpha" class="controller__name alpha">A</label>
-            <input id="alpha" type="range" class="controller__bar" max="100" min="0" />
+            <input
+              id="alpha"
+              type="range"
+              class="controller__bar"
+              max="100"
+              min="0"
+            />
           </li>
         </ul>
       </aside>

@@ -1,0 +1,9 @@
+.wrapper {
+  display: flex;
+  background-color: var(--bg-color, #fff);
+  height: 100%;
+  perspective: 75rem;
+  perspective-origin: 50% 50%;
+  position: relative;
+  cursor: var(--pointer-style, grab);
+}
