@@ -75,7 +75,6 @@ p, h1, h2, h3, h4, h5, h6 {
 
 /** 我要做跟隨滑鼠移動的追蹤樣式 */
 /** 我要做hover有animation轉動 */
-/** 我要做click可以做到隨意面向翻轉 */
 
 .cube {
   width: var(--width);

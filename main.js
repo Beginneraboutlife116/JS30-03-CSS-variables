@@ -1,6 +1,6 @@
-//* click去驅動隨意面向的改變
 const wrapper = document.querySelector('.wrapper')
 const cube = document.querySelector('.cube')
+const cubeSides = document.querySelectorAll('.cube__side')
 let x = 0
 let y = 0
 let horizontalHalfValue = wrapper.offsetWidth / 2
@@ -17,6 +17,7 @@ function calculateRotateY(inputX) {
 }
 
 wrapper.addEventListener('mousedown', (e) => {
+  if ([...cubeSides].includes(e.target)) return
   x = e.offsetX
   y = e.offsetY
   cube.style.setProperty('--rotate-x-deg', calculateRotateX(y))
