@@ -1,7 +1,67 @@
 const interface = document.querySelector('.wrapper')
 const cube = document.querySelector('.cube')
 const cubeSides = document.querySelectorAll('.cube__side')
-const cubeSidesColors = []
+const colorInputs = document.querySelectorAll('.controller__bar')
+class Rgba {
+  red = Math.floor(Math.random() * 256)
+  green = Math.floor(Math.random() * 256)
+  blue = Math.floor(Math.random() * 256)
+  alpha = `${Math.floor(Math.random() * 100)}%`
+  constructor(name) {
+    this.name = name
+  }
+
+  get red() {
+    return this._red
+  }
+
+  set red(value) {
+    this._red = value
+  }
+
+  get green() {
+    return this._green
+  }
+
+  set green(value) {
+    this._green = value
+  }
+
+  get blue() {
+    return this._blue
+  }
+
+  set blue(value) {
+    this._blue = value
+  }
+
+  get alpha() {
+    return this._alpha
+  }
+
+  set alpha(value) {
+    this._alpha = value
+  }
+
+  setColorProperty(color) {
+    document.querySelector(`[data-side="${this.name}"]`).style.setProperty(`--${color}`, this[color])
+  }
+}
+const sideData = {
+  front: new Rgba('front'),
+  right: new Rgba('right'),
+  left: new Rgba('left'),
+  back: new Rgba('back'),
+  top: new Rgba('top'),
+  bottom: new Rgba('bottom')
+}
+Object.keys(sideData).forEach(side => {
+  sideData[side].setColorProperty('red')
+  sideData[side].setColorProperty('green')
+  sideData[side].setColorProperty('blue')
+  sideData[side].setColorProperty('alpha')
+})
+let sideName = ''
 let forRotateX = 0
 let forRotateY = 0
 let horizontalHalfValue = interface.clientWidth / 2
@@ -16,27 +76,13 @@ function calculateRotateY(inputX) {
   let rotateYDeg = (inputX - horizontalHalfValue) / horizontalHalfValue * 90
   return `${rotateYDeg}deg`
 }
-function setSideColor(side, red, green, blue, alpha) {
-  if (!side) return
-  side.style.setProperty('--red', red)
-  side.style.setProperty('--green', green)
-  side.style.setProperty('--blue', blue)
-  side.style.setProperty('--alpha', `${alpha}%`)
-}
 
-cubeSides.forEach(cubeSide => {
-  const values = []
-  for (let i = 0; i < 4; i++) {
-    if (i === 3) {
-      values.push(Math.floor(Math.random() * 50) + 50)
-    } else {
-      values.push(Math.floor(Math.random() * 256))
-    }
-  }
-  setSideColor(cubeSide, ...values)
-  cubeSidesColors.push(values)
-})
-console.log(cubeSidesColors)
+function changeColor() {
+  const colorName = this.name
+  const colorValue = this.name !== 'alpha' ? this.value : `${this.value}%`
+  sideData[sideName][colorName] = colorValue
+  sideData[sideName].setColorProperty(colorName)
+}
 
 interface.addEventListener('mousedown', (e) => {
   if (e.target !== interface) return
@@ -64,4 +110,25 @@ interface.addEventListener('mouseup', () => {
 window.addEventListener('resize', () => {
   horizontalHalfValue = interface.clientWidth / 2
   verticalHalfValue = interface.clientHeight / 2
+})
+cube.addEventListener('click', (e) => {
+  if (sideName === e.target.dataset.side) return
+  sideName = e.target.dataset.side
+  colorInputs.forEach(input => {
+    switch (input.name) {
+      case 'red': 
+        input.value = sideData[sideName].red
+        break
+      case 'green':
+        input.value = sideData[sideName].green
+        break
+      case 'blue':
+        input.value = sideData[sideName].blue
+        break
+      case 'alpha':
+        input.value = Number(sideData[sideName].alpha.slice(0, -1))
+        break
+    }
+    input.addEventListener('input', changeColor)
+  })
 })

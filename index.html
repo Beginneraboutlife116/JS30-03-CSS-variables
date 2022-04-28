@@ -14,27 +14,27 @@
       <div class="cube">
         <button
           aria-label="front side of the cube"
-          class="cube__side front"
+          class="cube__side front" data-side="front"
         ></button>
         <button
           aria-label="right side of the cube"
-          class="cube__side right"
+          class="cube__side right" data-side="right"
         ></button>
         <button
           aria-label="left side of the cube"
-          class="cube__side left"
+          class="cube__side left" data-side="left"
         ></button>
         <button
           aria-label="back side of the cube"
-          class="cube__side back"
+          class="cube__side back" data-side="back"
         ></button>
         <button
           aria-label="top side of the cube"
-          class="cube__side top"
+          class="cube__side top" data-side="top"
         ></button>
         <button
           aria-label="bottom side of the cube"
-          class="cube__side bottom"
+          class="cube__side bottom" data-side="bottom"
         ></button>
       </div>
 
@@ -46,8 +46,10 @@
               id="red"
               type="range"
               class="controller__bar"
+              name="red"
               max="255"
               min="0"
+              value="128"
             />
           </li>
           <li class="flex__item">
@@ -56,8 +58,10 @@
               id="green"
               type="range"
               class="controller__bar"
+              name="green"
               max="255"
               min="0"
+              value="128"
             />
           </li>
           <li class="flex__item">
@@ -66,8 +70,10 @@
               id="blue"
               type="range"
               class="controller__bar"
+              name="blue"
               max="255"
               min="0"
+              value="128"
             />
           </li>
           <li class="flex__item">
@@ -76,8 +82,10 @@
               id="alpha"
               type="range"
               class="controller__bar"
+              name="alpha"
               max="100"
               min="0"
+              value="50"
             />
           </li>
         </ul>
