@@ -1,6 +1,5 @@
 const interface = document.querySelector('.wrapper')
 const cube = document.querySelector('.cube')
-const cubeSides = document.querySelectorAll('.cube__side')
 const colorInputs = document.querySelectorAll('.controller__bar')
 class Rgba {
   red = Math.floor(Math.random() * 256)
@@ -55,13 +54,13 @@ const sideData = {
   top: new Rgba('top'),
   bottom: new Rgba('bottom')
 }
-Object.keys(sideData).forEach(side => {
-  sideData[side].setColorProperty('red')
-  sideData[side].setColorProperty('green')
-  sideData[side].setColorProperty('blue')
-  sideData[side].setColorProperty('alpha')
+Object.keys(sideData).forEach(sideName => {
+  sideData[sideName].setColorProperty('red')
+  sideData[sideName].setColorProperty('green')
+  sideData[sideName].setColorProperty('blue')
+  sideData[sideName].setColorProperty('alpha')
 })
-let sideName = ''
+let clickedSideName = ''
 let forRotateX = 0
 let forRotateY = 0
 let horizontalHalfValue = interface.clientWidth / 2
@@ -80,8 +79,8 @@ function calculateRotateY(inputX) {
 function changeColor() {
   const colorName = this.name
   const colorValue = this.name !== 'alpha' ? this.value : `${this.value}%`
-  sideData[sideName][colorName] = colorValue
-  sideData[sideName].setColorProperty(colorName)
+  sideData[clickedSideName][colorName] = colorValue
+  sideData[clickedSideName].setColorProperty(colorName)
 }
 
 interface.addEventListener('mousedown', (e) => {
@@ -112,21 +111,21 @@ window.addEventListener('resize', () => {
   verticalHalfValue = interface.clientHeight / 2
 })
 cube.addEventListener('click', (e) => {
-  if (sideName === e.target.dataset.side) return
-  sideName = e.target.dataset.side
+  if (clickedSideName === e.target.dataset.side) return
+  clickedSideName = e.target.dataset.side
   colorInputs.forEach(input => {
     switch (input.name) {
       case 'red': 
-        input.value = sideData[sideName].red
+        input.value = sideData[clickedSideName].red
         break
       case 'green':
-        input.value = sideData[sideName].green
+        input.value = sideData[clickedSideName].green
         break
       case 'blue':
-        input.value = sideData[sideName].blue
+        input.value = sideData[clickedSideName].blue
         break
       case 'alpha':
-        input.value = Number(sideData[sideName].alpha.slice(0, -1))
+        input.value = Number(sideData[clickedSideName].alpha.slice(0, -1))
         break
     }
     input.addEventListener('input', changeColor)
