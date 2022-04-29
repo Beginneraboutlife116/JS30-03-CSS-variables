@@ -1,6 +1,9 @@
+// * Variables
 const interface = document.querySelector('.wrapper')
 const cube = document.querySelector('.cube')
 const colorInputs = document.querySelectorAll('.controller__bar')
+
+// the rgba for each side
 class Rgba {
   red = Math.floor(Math.random() * 256)
   green = Math.floor(Math.random() * 256)
@@ -46,6 +49,8 @@ class Rgba {
     document.querySelector(`[data-side="${this.name}"]`).style.setProperty(`--${color}`, this[color])
   }
 }
+
+// default data for each cube
 const sideData = {
   front: new Rgba('front'),
   right: new Rgba('right'),
@@ -54,28 +59,21 @@ const sideData = {
   top: new Rgba('top'),
   bottom: new Rgba('bottom')
 }
-Object.keys(sideData).forEach(sideName => {
-  sideData[sideName].setColorProperty('red')
-  sideData[sideName].setColorProperty('green')
-  sideData[sideName].setColorProperty('blue')
-  sideData[sideName].setColorProperty('alpha')
-})
+
 let clickedSideName = ''
-let forRotateX = 0
-let forRotateY = 0
-let horizontalHalfValue = interface.clientWidth / 2
-let verticalHalfValue = interface.clientHeight / 2
+
+// variables for rotation
+let currentHorizontalDegree = 0
+let currentVerticalDegree = 0
+let beginningX = 0
+let beginningY = 0
+let currentX = 0
+let currentY = 0
+let horizontalUnitDegree = 180 / interface.clientWidth
+let verticalUnitDegree = 180 / interface.clientHeight
 let isGrabbing = false
 
-function calculateRotateX(inputY) {
-  let rotateXDeg = (verticalHalfValue - inputY) / verticalHalfValue * 90
-  return `${rotateXDeg}deg`
-}
-function calculateRotateY(inputX) {
-  let rotateYDeg = (inputX - horizontalHalfValue) / horizontalHalfValue * 90
-  return `${rotateYDeg}deg`
-}
-
+// * Functions
 function changeColor() {
   const colorName = this.name
   const colorValue = this.name !== 'alpha' ? this.value : `${this.value}%`
@@ -83,33 +81,53 @@ function changeColor() {
   sideData[clickedSideName].setColorProperty(colorName)
 }
 
+// * Actions
+// fill color on the cube
+Object.keys(sideData).forEach(sideName => {
+  sideData[sideName].setColorProperty('red')
+  sideData[sideName].setColorProperty('green')
+  sideData[sideName].setColorProperty('blue')
+  sideData[sideName].setColorProperty('alpha')
+})
+
+// change unit degree based on interface's ratio
+window.addEventListener('resize', () => {
+  horizontalUnitDegree = 180 / interface.clientWidth
+  verticalUnitDegree = 180 / interface.clientHeight
+})
+
+// start rotating
 interface.addEventListener('mousedown', (e) => {
   if (e.target !== interface) return
-  forRotateY = e.clientX
-  forRotateX = e.clientY
-  cube.style.setProperty('--rotate-x-deg', calculateRotateX(forRotateX))
-  cube.style.setProperty('--rotate-y-deg', calculateRotateY(forRotateY))
+  beginningX = e.clientX
+  beginningY = e.clientY
   interface.style.setProperty('--pointer-style', 'grabbing')
   isGrabbing = true
 })
 interface.addEventListener('mousemove', (e) => {
-  if (isGrabbing) {
-    forRotateY = e.clientX
-    forRotateX = e.clientY
-    cube.style.setProperty('--rotate-x-deg', calculateRotateX(forRotateX))
-    cube.style.setProperty('--rotate-y-deg', calculateRotateY(forRotateY))
-    cube.style.setProperty('--cube-pointer', 'grabbing')
+  if (!isGrabbing) return
+  cube.style.setProperty('--cube-pointer', 'grabbing')
+  currentX = e.clientX
+  currentY = e.clientY
+  if (currentX !== beginningX) {
+    currentHorizontalDegree += (currentX - beginningX) * horizontalUnitDegree
+    cube.style.setProperty('--rotate-x-deg', `${currentVerticalDegree}deg`)
+    beginningX = currentX
+  }
+  if (currentY !== beginningY) {
+    currentVerticalDegree += (beginningY - currentY) * verticalUnitDegree
+    cube.style.setProperty('--rotate-y-deg', `${currentHorizontalDegree}deg`)
+    beginningY = currentY
   }
 })
-interface.addEventListener('mouseup', () => {
+// rotation end
+interface.addEventListener('mouseup', (e) => {
   isGrabbing = false
   interface.style.setProperty('--pointer-style', '')
   cube.style.setProperty('--cube-pointer', '')
 })
-window.addEventListener('resize', () => {
-  horizontalHalfValue = interface.clientWidth / 2
-  verticalHalfValue = interface.clientHeight / 2
-})
+
+// select specific side and double binding
 cube.addEventListener('click', (e) => {
   if (clickedSideName === e.target.dataset.side) return
   clickedSideName = e.target.dataset.side
