@@ -104,6 +104,7 @@ interface.addEventListener('mousedown', (e) => {
   interface.style.setProperty('--pointer-style', 'grabbing')
   isGrabbing = true
 })
+// in the progress of rotating
 interface.addEventListener('mousemove', (e) => {
   if (!isGrabbing) return
   cube.style.setProperty('--cube-pointer', 'grabbing')
