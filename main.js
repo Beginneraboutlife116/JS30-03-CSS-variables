@@ -140,13 +140,16 @@ cube.addEventListener('click', (e) => {
   colorInputs.forEach(input => {
     switch (input.name) {
       case 'red': 
-        input.value, input.nextElementSibling.textContent = sideData[clickedSideName].red
+        input.value = sideData[clickedSideName].red
+        input.nextElementSibling.textContent = sideData[clickedSideName].red
         break
       case 'green':
-        input.value, input.nextElementSibling.textContent = sideData[clickedSideName].green
+        input.value = sideData[clickedSideName].green
+        input.nextElementSibling.textContent = sideData[clickedSideName].green
         break
       case 'blue':
-        input.value, input.nextElementSibling.textContent = sideData[clickedSideName].blue
+        input.value = sideData[clickedSideName].blue
+        , input.nextElementSibling.textContent = sideData[clickedSideName].blue
         break
       case 'alpha':
         input.value = Number(sideData[clickedSideName].alpha.slice(0, -1))
