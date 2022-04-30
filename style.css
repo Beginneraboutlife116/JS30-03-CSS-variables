@@ -77,15 +77,28 @@ html, body {
   --min-width: 8rem;
   --max-width: 15rem;
   --width: clamp(var(--min-width), 30vw, var(--max-width));
-  --bg-color: initial;
-  --controller-clr: initial;
-  --controller-filter-clr: initial;
-  --border-clr: initial;
+  --bg-color: #f3f3f3;
+  --border-color: #1a1a1a;
+  --controller-clr: #e8e8e8;
+  --controller-filter-clr: black;
+  --red-text: #cc0000;
+  --green-text: #004d00;
+  --blue-text: #0000cc;
+  --alpha-text: #6b6b6b;
+  --title-text-background: linear-gradient(to right, var(--red-text), #e69500, var(--green-text), var(--blue-text), purple);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-clr: #2a2a2a;
+    --bg-color: #1a1a1a;
+    --border-color: #f3f3f3;
+    --controller-clr: gray;
+    --controller-filter-clr: white;
+    --red-text: #ff1a1a;
+    --green-text: #00e600;
+    --blue-text: #3333ff;
+    --alpha-text: #b3b3b3;
+    --title-text-background: linear-gradient(to right, var(--red-text), #ffc966, var(--green-text), var(--blue-text), #ff80ff);
   }
 }
 @keyframes shinny {
@@ -123,7 +136,7 @@ html, body {
 
 .wrapper {
   display: flex;
-  background-color: var(--bg-color, #fff);
+  background-color: var(--bg-color);
   height: 100%;
   perspective: 75rem;
   perspective-origin: 50% 50%;
@@ -135,7 +148,7 @@ html, body {
   position: absolute;
   inset: 2rem auto auto 2rem;
   line-height: 1.2;
-  background-image: linear-gradient(to right, red, orange, green, blue, purple);
+  background-image: var(--title-text-background);
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
@@ -155,7 +168,7 @@ html, body {
   position: absolute;
   width: 100%;
   height: 100%;
-  border: 2.5px solid var(--border-clr, rgb(0, 0, 0));
+  border: 2.5px solid var(--border-color);
   inset: 0;
   background-color: rgba(var(--red, 255), var(--green, 255), var(--blue, 255), var(--alpha, 0.5));
   cursor: var(--cube-pointer, pointer);
@@ -164,7 +177,7 @@ html, body {
   content: "";
   position: absolute;
   inset: 0;
-  box-shadow: 0px 0px 20px 10px rgb(var(--red, 255), var(--green, 255), var(--blue, 255));
+  box-shadow: 0px 0px 30px 10px rgb(var(--red, 255), var(--green, 255), var(--blue, 255));
   opacity: 0;
   animation: shinny var(--animation-duration, 0s) ease-in-out 0s infinite alternate;
 }
@@ -204,7 +217,7 @@ html, body {
   padding-block: 1rem;
   border-radius: 5%;
   background-color: var(--controller-clr, #eee);
-  filter: drop-shadow(0 0 1rem var(--controller-filter-clr, black));
+  filter: drop-shadow(0 0 1rem var(--controller-filter-clr));
   font-size: 1.25rem;
   cursor: auto;
   user-select: none;
@@ -221,16 +234,16 @@ html, body {
   margin-right: -0.5rem;
 }
 .controller__name[for=red] {
-  color: var(--red-text, #cc0000);
+  color: var(--red-text);
 }
 .controller__name[for=green] {
-  color: var(--green-text, #004d00);
+  color: var(--green-text);
 }
 .controller__name[for=blue] {
-  color: var(--blue-text, #0000cc);
+  color: var(--blue-text);
 }
 .controller__name[for=alpha] {
-  color: var(--alpha-text, #676767);
+  color: var(--alpha-text);
 }
 .controller__bar {
   -webkit-appearance: none;
@@ -242,154 +255,154 @@ html, body {
   outline: none;
 }
 .controller__bar[name=red] {
-  background-image: linear-gradient(to left, white, red, black);
-  box-shadow: 0 0 2px 1px red;
+  background-image: linear-gradient(to left, white, var(--red-text), black);
+  box-shadow: 0 0 2px 1px var(--red-text);
 }
 .controller__bar[name=red]::-webkit-slider-runnable-track {
-  background-image: linear-gradient(to left, white, red, black);
+  background-image: linear-gradient(to left, white, var(--red-text), black);
   height: 1.25rem;
   border-radius: 5px;
 }
 .controller__bar[name=red]::-webkit-slider-thumb {
-  box-shadow: 0 0 2px 1px red;
+  box-shadow: 0 0 2px 1px var(--red-text);
   width: 0.5rem;
   height: 1.5rem;
   border-radius: 1rem;
   appearance: none;
-  background-color: var(--thumb-clr, #fff);
+  background-color: white;
   transform: translateY(-0.125rem);
   cursor: grab;
 }
 .controller__bar[name=red]:focus::-webkit-slider-thumb {
-  outline: 3px solid red;
+  outline: 3px solid var(--red-text);
   outline-offset: 0.125rem;
   cursor: grabbing;
 }
 .controller__bar[name=red]::-moz-range-thumb {
-  box-shadow: 0 0 2px 1px red;
+  box-shadow: 0 0 2px 1px var(--red-text);
   border: none;
   width: 0.5rem;
   height: 1.5rem;
   border-radius: 1rem;
-  background-color: var(--thumb-clr, #fff);
+  background-color: white;
   cursor: grab;
 }
 .controller__bar[name=red]:focus::-moz-range-thumb {
-  outline: 3px solid red;
+  outline: 3px solid var(--red-text);
   outline-offset: 0.125rem;
   cursor: grabbing;
 }
 .controller__bar[name=green] {
-  background-image: linear-gradient(to left, white, green, black);
-  box-shadow: 0 0 2px 1px green;
+  background-image: linear-gradient(to left, white, var(--green-text), black);
+  box-shadow: 0 0 2px 1px var(--green-text);
 }
 .controller__bar[name=green]::-webkit-slider-runnable-track {
-  background-image: linear-gradient(to left, white, green, black);
+  background-image: linear-gradient(to left, white, var(--green-text), black);
   height: 1.25rem;
   border-radius: 5px;
 }
 .controller__bar[name=green]::-webkit-slider-thumb {
-  box-shadow: 0 0 2px 1px green;
+  box-shadow: 0 0 2px 1px var(--green-text);
   width: 0.5rem;
   height: 1.5rem;
   border-radius: 1rem;
   appearance: none;
-  background-color: var(--thumb-clr, #fff);
+  background-color: white;
   transform: translateY(-0.125rem);
   cursor: grab;
 }
 .controller__bar[name=green]:focus::-webkit-slider-thumb {
-  outline: 3px solid green;
+  outline: 3px solid var(--green-text);
   outline-offset: 0.125rem;
   cursor: grabbing;
 }
 .controller__bar[name=green]::-moz-range-thumb {
-  box-shadow: 0 0 2px 1px green;
+  box-shadow: 0 0 2px 1px var(--green-text);
   border: none;
   width: 0.5rem;
   height: 1.5rem;
   border-radius: 1rem;
-  background-color: var(--thumb-clr, #fff);
+  background-color: white;
   cursor: grab;
 }
 .controller__bar[name=green]:focus::-moz-range-thumb {
-  outline: 3px solid green;
+  outline: 3px solid var(--green-text);
   outline-offset: 0.125rem;
   cursor: grabbing;
 }
 .controller__bar[name=blue] {
-  background-image: linear-gradient(to left, white, blue, black);
-  box-shadow: 0 0 2px 1px blue;
+  background-image: linear-gradient(to left, white, var(--blue-text), black);
+  box-shadow: 0 0 2px 1px var(--blue-text);
 }
 .controller__bar[name=blue]::-webkit-slider-runnable-track {
-  background-image: linear-gradient(to left, white, blue, black);
+  background-image: linear-gradient(to left, white, var(--blue-text), black);
   height: 1.25rem;
   border-radius: 5px;
 }
 .controller__bar[name=blue]::-webkit-slider-thumb {
-  box-shadow: 0 0 2px 1px blue;
+  box-shadow: 0 0 2px 1px var(--blue-text);
   width: 0.5rem;
   height: 1.5rem;
   border-radius: 1rem;
   appearance: none;
-  background-color: var(--thumb-clr, #fff);
+  background-color: white;
   transform: translateY(-0.125rem);
   cursor: grab;
 }
 .controller__bar[name=blue]:focus::-webkit-slider-thumb {
-  outline: 3px solid blue;
+  outline: 3px solid var(--blue-text);
   outline-offset: 0.125rem;
   cursor: grabbing;
 }
 .controller__bar[name=blue]::-moz-range-thumb {
-  box-shadow: 0 0 2px 1px blue;
+  box-shadow: 0 0 2px 1px var(--blue-text);
   border: none;
   width: 0.5rem;
   height: 1.5rem;
   border-radius: 1rem;
-  background-color: var(--thumb-clr, #fff);
+  background-color: white;
   cursor: grab;
 }
 .controller__bar[name=blue]:focus::-moz-range-thumb {
-  outline: 3px solid blue;
+  outline: 3px solid var(--blue-text);
   outline-offset: 0.125rem;
   cursor: grabbing;
 }
 .controller__bar[name=alpha] {
-  background-image: linear-gradient(to left, white, gray, black);
-  box-shadow: 0 0 2px 1px gray;
+  background-image: linear-gradient(to left, white, var(--alpha-text), black);
+  box-shadow: 0 0 2px 1px var(--alpha-text);
 }
 .controller__bar[name=alpha]::-webkit-slider-runnable-track {
-  background-image: linear-gradient(to left, white, gray, black);
+  background-image: linear-gradient(to left, white, var(--alpha-text), black);
   height: 1.25rem;
   border-radius: 5px;
 }
 .controller__bar[name=alpha]::-webkit-slider-thumb {
-  box-shadow: 0 0 2px 1px gray;
+  box-shadow: 0 0 2px 1px var(--alpha-text);
   width: 0.5rem;
   height: 1.5rem;
   border-radius: 1rem;
   appearance: none;
-  background-color: var(--thumb-clr, #fff);
+  background-color: white;
   transform: translateY(-0.125rem);
   cursor: grab;
 }
 .controller__bar[name=alpha]:focus::-webkit-slider-thumb {
-  outline: 3px solid gray;
+  outline: 3px solid var(--alpha-text);
   outline-offset: 0.125rem;
   cursor: grabbing;
 }
 .controller__bar[name=alpha]::-moz-range-thumb {
-  box-shadow: 0 0 2px 1px gray;
+  box-shadow: 0 0 2px 1px var(--alpha-text);
   border: none;
   width: 0.5rem;
   height: 1.5rem;
   border-radius: 1rem;
-  background-color: var(--thumb-clr, #fff);
+  background-color: white;
   cursor: grab;
 }
 .controller__bar[name=alpha]:focus::-moz-range-thumb {
-  outline: 3px solid gray;
+  outline: 3px solid var(--alpha-text);
   outline-offset: 0.125rem;
   cursor: grabbing;
 }

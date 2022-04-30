@@ -9,7 +9,7 @@
   padding-block: 1rem;
   border-radius: 5%;
   background-color: var(--controller-clr, #eee);
-  filter: drop-shadow(0 0 1rem var(--controller-filter-clr, black));
+  filter: drop-shadow(0 0 1rem var(--controller-filter-clr));
   font-size: 1.25rem;
   cursor: auto;
   user-select: none;
@@ -23,9 +23,9 @@
     font-weight: 900;
     font-size: 2rem;
     margin-right: -0.5rem;
-    @each $k, $v in var.$colors {
-      &[for="#{$k}"] {
-        @include mixin.controller-name-color(($v))
+    @each $value in var.$colors {
+      &[for="#{$value}"] {
+        @include mixin.controller-name-color(($value))
       }
     }
   }
@@ -37,41 +37,41 @@
     &:focus {
       outline: none;
     }
-    @each $k, $v in var.$colors {
-      &[name="#{$k}"] {
-        @include mixin.controller-bar-track-background($v);
-        @include mixin.controller-bar-box-shadow($v);
+    @each $value in var.$colors {
+      &[name="#{$value}"] {
+        @include mixin.controller-bar-track-background($value);
+        @include mixin.controller-bar-box-shadow($value);
         &::-webkit-slider-runnable-track {
-          @include mixin.controller-bar-track-background($v);
+          @include mixin.controller-bar-track-background($value);
           height: 1.25rem;
           border-radius: 5px;
         }
         &::-webkit-slider-thumb {
-          @include mixin.controller-bar-box-shadow($v);
+          @include mixin.controller-bar-box-shadow($value);
           width: 0.5rem;
           height: 1.5rem;
           border-radius: 1rem;
           appearance: none;
-          background-color: var(--thumb-clr, #fff);
+          background-color: white;
           transform: translateY(-0.125rem);
           cursor: grab;
         }
         &:focus::-webkit-slider-thumb {
-          @include mixin.controller-bar-focus-style($v);
+          @include mixin.controller-bar-focus-style($value);
           outline-offset: 0.125rem;
           cursor: grabbing;
         }
         &::-moz-range-thumb {
-          @include mixin.controller-bar-box-shadow($v);
+          @include mixin.controller-bar-box-shadow($value);
           border: none;
           width: 0.5rem;
           height: 1.5rem;
           border-radius: 1rem;
-          background-color: var(--thumb-clr, #fff);
+          background-color: white;
           cursor: grab;
         }
         &:focus::-moz-range-thumb {
-          @include mixin.controller-bar-focus-style($v);
+          @include mixin.controller-bar-focus-style($value);
           outline-offset: 0.125rem;
           cursor: grabbing;
         }

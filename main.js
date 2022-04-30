@@ -90,9 +90,6 @@ function changeColorAndValueText() {
   sideData[clickedSideName].setColorProperty(colorName)
   this.nextElementSibling.textContent = colorValue.toString()
 }
-// function changeBarValue(dom, barValue) {
-//   dom.nextElementSibling.textContent = typeof barValue === 'string' ? barValue : barValue.toString()
-// }
 
 // * Actions
 // change unit degree based on interface's ratio
