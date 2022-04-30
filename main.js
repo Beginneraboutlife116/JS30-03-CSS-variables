@@ -11,6 +11,7 @@ class Rgba {
   alpha = `${Math.floor(Math.random() * 100)}%`
   constructor(name) {
     this.name = name
+    this.sideDom = document.querySelector(`[data-side="${this.name}"]`)
     this.#setInitialColor()
   }
 
@@ -47,7 +48,7 @@ class Rgba {
   }
 
   setColorProperty(color) {
-    document.querySelector(`[data-side="${this.name}"]`).style.setProperty(`--${color}`, this[color])
+    this.sideDom.style.setProperty(`--${color}`, this[color])
   }
 
   #setInitialColor() {
@@ -82,12 +83,16 @@ let verticalUnitDegree = 180 / interface.clientHeight
 let isGrabbing = false
 
 // * Functions
-function changeColor() {
+function changeColorAndValueText() {
   const colorName = this.name
   const colorValue = this.name !== 'alpha' ? this.value : `${this.value}%`
   sideData[clickedSideName][colorName] = colorValue
   sideData[clickedSideName].setColorProperty(colorName)
+  this.nextElementSibling.textContent = colorValue.toString()
 }
+// function changeBarValue(dom, barValue) {
+//   dom.nextElementSibling.textContent = typeof barValue === 'string' ? barValue : barValue.toString()
+// }
 
 // * Actions
 // change unit degree based on interface's ratio
@@ -135,18 +140,19 @@ cube.addEventListener('click', (e) => {
   colorInputs.forEach(input => {
     switch (input.name) {
       case 'red': 
-        input.value = sideData[clickedSideName].red
+        input.value, input.nextElementSibling.textContent = sideData[clickedSideName].red
         break
       case 'green':
-        input.value = sideData[clickedSideName].green
+        input.value, input.nextElementSibling.textContent = sideData[clickedSideName].green
         break
       case 'blue':
-        input.value = sideData[clickedSideName].blue
+        input.value, input.nextElementSibling.textContent = sideData[clickedSideName].blue
         break
       case 'alpha':
         input.value = Number(sideData[clickedSideName].alpha.slice(0, -1))
+        input.nextElementSibling.textContent = sideData[clickedSideName].alpha
         break
     }
-    input.addEventListener('input', changeColor)
+    input.addEventListener('input', changeColorAndValueText)
   })
 })
