@@ -2,9 +2,11 @@
 @use '../abstract/mixins' as mixin;
 
 .controller {
+  display: flex;
+  width: min(80%, 20rem);
   position: absolute;
   inset: auto auto 2rem 2rem;
-  padding: clamp(0.75rem, 2.5vw, 1.5rem);
+  padding-block: 1rem;
   border-radius: 5%;
   background-color: var(--controller-clr, #eee);
   filter: drop-shadow(0 0 1rem var(--controller-filter-clr, black));
@@ -12,13 +14,15 @@
   cursor: auto;
   user-select: none;
   &__container {
+    width: 90%;
+    margin: auto;
     list-style-type: none;
     padding-left: 0;
   }
   &__name {
     font-weight: 900;
     font-size: 2rem;
-
+    margin-right: -0.5rem;
     @each $k, $v in var.$colors {
       &[for="#{$k}"] {
         @include mixin.controller-name-color(($v))
@@ -28,7 +32,7 @@
   &__bar {
     -webkit-appearance: none;
     width: 10rem;
-    height: 1.5rem;
+    height: 1.25rem;
     border-radius: 5px;
     &:focus {
       outline: none;
@@ -39,17 +43,17 @@
         @include mixin.controller-bar-box-shadow($v);
         &::-webkit-slider-runnable-track {
           @include mixin.controller-bar-track-background($v);
-          height: 1.5rem;
+          height: 1.25rem;
           border-radius: 5px;
         }
         &::-webkit-slider-thumb {
           @include mixin.controller-bar-box-shadow($v);
           width: 0.5rem;
-          height: 2rem;
+          height: 1.5rem;
           border-radius: 1rem;
           appearance: none;
           background-color: var(--thumb-clr, #fff);
-          transform: translateY(-0.25rem);
+          transform: translateY(-0.125rem);
           cursor: grab;
         }
         &:focus::-webkit-slider-thumb {
@@ -61,7 +65,7 @@
           @include mixin.controller-bar-box-shadow($v);
           border: none;
           width: 0.5rem;
-          height: 2rem;
+          height: 1.5rem;
           border-radius: 1rem;
           background-color: var(--thumb-clr, #fff);
           cursor: grab;

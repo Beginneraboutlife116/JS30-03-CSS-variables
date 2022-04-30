@@ -8,10 +8,16 @@
   &_fxd_column {
     flex-direction: column;
   }
-  &__gap {
+  &_gap {
     gap: 1rem;
+  }
+  &_gap_lg {
+    gap: 1.5rem;
   }
   &_ai_center {
     align-items: center;
+  }
+  &_jc_space-between {
+    justify-content: space-between;
   }
 }

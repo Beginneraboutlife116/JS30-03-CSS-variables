@@ -108,11 +108,17 @@ html, body {
 .flex_fxd_column {
   flex-direction: column;
 }
-.flex__gap {
+.flex_gap {
   gap: 1rem;
+}
+.flex_gap_lg {
+  gap: 1.5rem;
 }
 .flex_ai_center {
   align-items: center;
+}
+.flex_jc_space-between {
+  justify-content: space-between;
 }
 
 .wrapper {
@@ -191,9 +197,11 @@ html, body {
 }
 
 .controller {
+  display: flex;
+  width: min(80%, 20rem);
   position: absolute;
   inset: auto auto 2rem 2rem;
-  padding: clamp(0.75rem, 2.5vw, 1.5rem);
+  padding-block: 1rem;
   border-radius: 5%;
   background-color: var(--controller-clr, #eee);
   filter: drop-shadow(0 0 1rem var(--controller-filter-clr, black));
@@ -202,12 +210,15 @@ html, body {
   user-select: none;
 }
 .controller__container {
+  width: 90%;
+  margin: auto;
   list-style-type: none;
   padding-left: 0;
 }
 .controller__name {
   font-weight: 900;
   font-size: 2rem;
+  margin-right: -0.5rem;
 }
 .controller__name[for=red] {
   color: var(--red-text, #cc0000);
@@ -224,7 +235,7 @@ html, body {
 .controller__bar {
   -webkit-appearance: none;
   width: 10rem;
-  height: 1.5rem;
+  height: 1.25rem;
   border-radius: 5px;
 }
 .controller__bar:focus {
@@ -236,17 +247,17 @@ html, body {
 }
 .controller__bar[name=red]::-webkit-slider-runnable-track {
   background-image: linear-gradient(to left, white, red, black);
-  height: 1.5rem;
+  height: 1.25rem;
   border-radius: 5px;
 }
 .controller__bar[name=red]::-webkit-slider-thumb {
   box-shadow: 0 0 2px 1px red;
   width: 0.5rem;
-  height: 2rem;
+  height: 1.5rem;
   border-radius: 1rem;
   appearance: none;
   background-color: var(--thumb-clr, #fff);
-  transform: translateY(-0.25rem);
+  transform: translateY(-0.125rem);
   cursor: grab;
 }
 .controller__bar[name=red]:focus::-webkit-slider-thumb {
@@ -258,7 +269,7 @@ html, body {
   box-shadow: 0 0 2px 1px red;
   border: none;
   width: 0.5rem;
-  height: 2rem;
+  height: 1.5rem;
   border-radius: 1rem;
   background-color: var(--thumb-clr, #fff);
   cursor: grab;
@@ -274,17 +285,17 @@ html, body {
 }
 .controller__bar[name=green]::-webkit-slider-runnable-track {
   background-image: linear-gradient(to left, white, green, black);
-  height: 1.5rem;
+  height: 1.25rem;
   border-radius: 5px;
 }
 .controller__bar[name=green]::-webkit-slider-thumb {
   box-shadow: 0 0 2px 1px green;
   width: 0.5rem;
-  height: 2rem;
+  height: 1.5rem;
   border-radius: 1rem;
   appearance: none;
   background-color: var(--thumb-clr, #fff);
-  transform: translateY(-0.25rem);
+  transform: translateY(-0.125rem);
   cursor: grab;
 }
 .controller__bar[name=green]:focus::-webkit-slider-thumb {
@@ -296,7 +307,7 @@ html, body {
   box-shadow: 0 0 2px 1px green;
   border: none;
   width: 0.5rem;
-  height: 2rem;
+  height: 1.5rem;
   border-radius: 1rem;
   background-color: var(--thumb-clr, #fff);
   cursor: grab;
@@ -312,17 +323,17 @@ html, body {
 }
 .controller__bar[name=blue]::-webkit-slider-runnable-track {
   background-image: linear-gradient(to left, white, blue, black);
-  height: 1.5rem;
+  height: 1.25rem;
   border-radius: 5px;
 }
 .controller__bar[name=blue]::-webkit-slider-thumb {
   box-shadow: 0 0 2px 1px blue;
   width: 0.5rem;
-  height: 2rem;
+  height: 1.5rem;
   border-radius: 1rem;
   appearance: none;
   background-color: var(--thumb-clr, #fff);
-  transform: translateY(-0.25rem);
+  transform: translateY(-0.125rem);
   cursor: grab;
 }
 .controller__bar[name=blue]:focus::-webkit-slider-thumb {
@@ -334,7 +345,7 @@ html, body {
   box-shadow: 0 0 2px 1px blue;
   border: none;
   width: 0.5rem;
-  height: 2rem;
+  height: 1.5rem;
   border-radius: 1rem;
   background-color: var(--thumb-clr, #fff);
   cursor: grab;
@@ -350,17 +361,17 @@ html, body {
 }
 .controller__bar[name=alpha]::-webkit-slider-runnable-track {
   background-image: linear-gradient(to left, white, gray, black);
-  height: 1.5rem;
+  height: 1.25rem;
   border-radius: 5px;
 }
 .controller__bar[name=alpha]::-webkit-slider-thumb {
   box-shadow: 0 0 2px 1px gray;
   width: 0.5rem;
-  height: 2rem;
+  height: 1.5rem;
   border-radius: 1rem;
   appearance: none;
   background-color: var(--thumb-clr, #fff);
-  transform: translateY(-0.25rem);
+  transform: translateY(-0.125rem);
   cursor: grab;
 }
 .controller__bar[name=alpha]:focus::-webkit-slider-thumb {
@@ -372,7 +383,7 @@ html, body {
   box-shadow: 0 0 2px 1px gray;
   border: none;
   width: 0.5rem;
-  height: 2rem;
+  height: 1.5rem;
   border-radius: 1rem;
   background-color: var(--thumb-clr, #fff);
   cursor: grab;
