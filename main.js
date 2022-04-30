@@ -11,6 +11,7 @@ class Rgba {
   alpha = `${Math.floor(Math.random() * 100)}%`
   constructor(name) {
     this.name = name
+    this.#setInitialColor()
   }
 
   get red() {
@@ -48,6 +49,13 @@ class Rgba {
   setColorProperty(color) {
     document.querySelector(`[data-side="${this.name}"]`).style.setProperty(`--${color}`, this[color])
   }
+
+  #setInitialColor() {
+    this.setColorProperty('red')
+    this.setColorProperty('green')
+    this.setColorProperty('green')
+    this.setColorProperty('alpha')
+  }
 }
 
 // default data for each cube
@@ -82,14 +90,6 @@ function changeColor() {
 }
 
 // * Actions
-// fill color on the cube
-Object.keys(sideData).forEach(sideName => {
-  sideData[sideName].setColorProperty('red')
-  sideData[sideName].setColorProperty('green')
-  sideData[sideName].setColorProperty('blue')
-  sideData[sideName].setColorProperty('alpha')
-})
-
 // change unit degree based on interface's ratio
 window.addEventListener('resize', () => {
   horizontalUnitDegree = 180 / interface.clientWidth
