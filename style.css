@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;900&display=swap");
 /*
   Josh's Custom CSS Reset
   https://www.joshwcomeau.com/css/custom-css-reset/
@@ -68,12 +69,25 @@ p, h1, h2, h3, h4, h5, h6 {
     scroll-behavior: auto !important;
   }
 }
+html, body {
+  font-family: "Montserrat", sans-serif;
+}
+
 :root {
   --min-width: 8rem;
   --max-width: 15rem;
   --width: clamp(var(--min-width), 30vw, var(--max-width));
+  --bg-color: initial;
+  --controller-clr: initial;
+  --controller-filter-clr: initial;
+  --border-clr: initial;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-clr: #2a2a2a;
+  }
+}
 @keyframes shinny {
   0% {
     opacity: 0;
@@ -85,6 +99,22 @@ p, h1, h2, h3, h4, h5, h6 {
     opacity: 0;
   }
 }
+.flex-container {
+  display: flex;
+}
+.flex__item {
+  display: flex;
+}
+.flex_fxd_column {
+  flex-direction: column;
+}
+.flex__gap {
+  gap: 1rem;
+}
+.flex_ai_center {
+  align-items: center;
+}
+
 .wrapper {
   display: flex;
   background-color: var(--bg-color, #fff);
@@ -93,6 +123,17 @@ p, h1, h2, h3, h4, h5, h6 {
   perspective-origin: 50% 50%;
   position: relative;
   cursor: var(--pointer-style, grab);
+}
+
+.title {
+  position: absolute;
+  inset: 2rem auto auto 2rem;
+  line-height: 1.2;
+  background-image: linear-gradient(to right, red, orange, green, blue, purple);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  user-select: none;
 }
 
 .cube {
@@ -150,9 +191,196 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .controller {
-  border: 5px solid #a6a6a6;
   position: absolute;
-  inset: auto auto 3% 3%;
+  inset: auto auto 2rem 2rem;
+  padding: clamp(0.75rem, 2.5vw, 1.5rem);
+  border-radius: 5%;
+  background-color: var(--controller-clr, #eee);
+  filter: drop-shadow(0 0 1rem var(--controller-filter-clr, black));
+  font-size: 1.25rem;
+  cursor: auto;
+  user-select: none;
+}
+.controller__container {
+  list-style-type: none;
+  padding-left: 0;
+}
+.controller__name {
+  font-weight: 900;
+  font-size: 2rem;
+}
+.controller__name[for=red] {
+  color: var(--red-text, #cc0000);
+}
+.controller__name[for=green] {
+  color: var(--green-text, #004d00);
+}
+.controller__name[for=blue] {
+  color: var(--blue-text, #0000cc);
+}
+.controller__name[for=alpha] {
+  color: var(--alpha-text, #676767);
+}
+.controller__bar {
+  -webkit-appearance: none;
+  width: 10rem;
+  height: 1.5rem;
+  border-radius: 5px;
+}
+.controller__bar:focus {
+  outline: none;
+}
+.controller__bar[name=red] {
+  background-image: linear-gradient(to left, white, red, black);
+  box-shadow: 0 0 2px 1px red;
+}
+.controller__bar[name=red]::-webkit-slider-runnable-track {
+  background-image: linear-gradient(to left, white, red, black);
+  height: 1.5rem;
+  border-radius: 5px;
+}
+.controller__bar[name=red]::-webkit-slider-thumb {
+  box-shadow: 0 0 2px 1px red;
+  width: 0.5rem;
+  height: 2rem;
+  border-radius: 1rem;
+  appearance: none;
+  background-color: var(--thumb-clr, #fff);
+  transform: translateY(-0.25rem);
+  cursor: grab;
+}
+.controller__bar[name=red]:focus::-webkit-slider-thumb {
+  outline: 3px solid red;
+  outline-offset: 0.125rem;
+  cursor: grabbing;
+}
+.controller__bar[name=red]::-moz-range-thumb {
+  box-shadow: 0 0 2px 1px red;
+  border: none;
+  width: 0.5rem;
+  height: 2rem;
+  border-radius: 1rem;
+  background-color: var(--thumb-clr, #fff);
+  cursor: grab;
+}
+.controller__bar[name=red]:focus::-moz-range-thumb {
+  outline: 3px solid red;
+  outline-offset: 0.125rem;
+  cursor: grabbing;
+}
+.controller__bar[name=green] {
+  background-image: linear-gradient(to left, white, green, black);
+  box-shadow: 0 0 2px 1px green;
+}
+.controller__bar[name=green]::-webkit-slider-runnable-track {
+  background-image: linear-gradient(to left, white, green, black);
+  height: 1.5rem;
+  border-radius: 5px;
+}
+.controller__bar[name=green]::-webkit-slider-thumb {
+  box-shadow: 0 0 2px 1px green;
+  width: 0.5rem;
+  height: 2rem;
+  border-radius: 1rem;
+  appearance: none;
+  background-color: var(--thumb-clr, #fff);
+  transform: translateY(-0.25rem);
+  cursor: grab;
+}
+.controller__bar[name=green]:focus::-webkit-slider-thumb {
+  outline: 3px solid green;
+  outline-offset: 0.125rem;
+  cursor: grabbing;
+}
+.controller__bar[name=green]::-moz-range-thumb {
+  box-shadow: 0 0 2px 1px green;
+  border: none;
+  width: 0.5rem;
+  height: 2rem;
+  border-radius: 1rem;
+  background-color: var(--thumb-clr, #fff);
+  cursor: grab;
+}
+.controller__bar[name=green]:focus::-moz-range-thumb {
+  outline: 3px solid green;
+  outline-offset: 0.125rem;
+  cursor: grabbing;
+}
+.controller__bar[name=blue] {
+  background-image: linear-gradient(to left, white, blue, black);
+  box-shadow: 0 0 2px 1px blue;
+}
+.controller__bar[name=blue]::-webkit-slider-runnable-track {
+  background-image: linear-gradient(to left, white, blue, black);
+  height: 1.5rem;
+  border-radius: 5px;
+}
+.controller__bar[name=blue]::-webkit-slider-thumb {
+  box-shadow: 0 0 2px 1px blue;
+  width: 0.5rem;
+  height: 2rem;
+  border-radius: 1rem;
+  appearance: none;
+  background-color: var(--thumb-clr, #fff);
+  transform: translateY(-0.25rem);
+  cursor: grab;
+}
+.controller__bar[name=blue]:focus::-webkit-slider-thumb {
+  outline: 3px solid blue;
+  outline-offset: 0.125rem;
+  cursor: grabbing;
+}
+.controller__bar[name=blue]::-moz-range-thumb {
+  box-shadow: 0 0 2px 1px blue;
+  border: none;
+  width: 0.5rem;
+  height: 2rem;
+  border-radius: 1rem;
+  background-color: var(--thumb-clr, #fff);
+  cursor: grab;
+}
+.controller__bar[name=blue]:focus::-moz-range-thumb {
+  outline: 3px solid blue;
+  outline-offset: 0.125rem;
+  cursor: grabbing;
+}
+.controller__bar[name=alpha] {
+  background-image: linear-gradient(to left, white, gray, black);
+  box-shadow: 0 0 2px 1px gray;
+}
+.controller__bar[name=alpha]::-webkit-slider-runnable-track {
+  background-image: linear-gradient(to left, white, gray, black);
+  height: 1.5rem;
+  border-radius: 5px;
+}
+.controller__bar[name=alpha]::-webkit-slider-thumb {
+  box-shadow: 0 0 2px 1px gray;
+  width: 0.5rem;
+  height: 2rem;
+  border-radius: 1rem;
+  appearance: none;
+  background-color: var(--thumb-clr, #fff);
+  transform: translateY(-0.25rem);
+  cursor: grab;
+}
+.controller__bar[name=alpha]:focus::-webkit-slider-thumb {
+  outline: 3px solid gray;
+  outline-offset: 0.125rem;
+  cursor: grabbing;
+}
+.controller__bar[name=alpha]::-moz-range-thumb {
+  box-shadow: 0 0 2px 1px gray;
+  border: none;
+  width: 0.5rem;
+  height: 2rem;
+  border-radius: 1rem;
+  background-color: var(--thumb-clr, #fff);
+  cursor: grab;
+}
+.controller__bar[name=alpha]:focus::-moz-range-thumb {
+  outline: 3px solid gray;
+  outline-offset: 0.125rem;
+  cursor: grabbing;
 }
 
 /*# sourceMappingURL=style.css.map */

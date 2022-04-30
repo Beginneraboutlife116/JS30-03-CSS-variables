@@ -1,5 +1,77 @@
+@use '../abstract/variables' as var;
+@use '../abstract/mixins' as mixin;
+
 .controller {
-  border: 5px solid #a6a6a6;
   position: absolute;
-  inset: auto auto 3% 3%;
+  inset: auto auto 2rem 2rem;
+  padding: clamp(0.75rem, 2.5vw, 1.5rem);
+  border-radius: 5%;
+  background-color: var(--controller-clr, #eee);
+  filter: drop-shadow(0 0 1rem var(--controller-filter-clr, black));
+  font-size: 1.25rem;
+  cursor: auto;
+  user-select: none;
+  &__container {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  &__name {
+    font-weight: 900;
+    font-size: 2rem;
+
+    @each $k, $v in var.$colors {
+      &[for="#{$k}"] {
+        @include mixin.controller-name-color(($v))
+      }
+    }
+  }
+  &__bar {
+    -webkit-appearance: none;
+    width: 10rem;
+    height: 1.5rem;
+    border-radius: 5px;
+    &:focus {
+      outline: none;
+    }
+    @each $k, $v in var.$colors {
+      &[name="#{$k}"] {
+        @include mixin.controller-bar-track-background($v);
+        @include mixin.controller-bar-box-shadow($v);
+        &::-webkit-slider-runnable-track {
+          @include mixin.controller-bar-track-background($v);
+          height: 1.5rem;
+          border-radius: 5px;
+        }
+        &::-webkit-slider-thumb {
+          @include mixin.controller-bar-box-shadow($v);
+          width: 0.5rem;
+          height: 2rem;
+          border-radius: 1rem;
+          appearance: none;
+          background-color: var(--thumb-clr, #fff);
+          transform: translateY(-0.25rem);
+          cursor: grab;
+        }
+        &:focus::-webkit-slider-thumb {
+          @include mixin.controller-bar-focus-style($v);
+          outline-offset: 0.125rem;
+          cursor: grabbing;
+        }
+        &::-moz-range-thumb {
+          @include mixin.controller-bar-box-shadow($v);
+          border: none;
+          width: 0.5rem;
+          height: 2rem;
+          border-radius: 1rem;
+          background-color: var(--thumb-clr, #fff);
+          cursor: grab;
+        }
+        &:focus::-moz-range-thumb {
+          @include mixin.controller-bar-focus-style($v);
+          outline-offset: 0.125rem;
+          cursor: grabbing;
+        }
+      }
+    }
+  }
 }

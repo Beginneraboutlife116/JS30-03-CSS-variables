@@ -1,0 +1,17 @@
+.flex {
+  &-container {
+    display: flex;
+  }
+  &__item {
+    display: flex;
+  }
+  &_fxd_column {
+    flex-direction: column;
+  }
+  &__gap {
+    gap: 1rem;
+  }
+  &_ai_center {
+    align-items: center;
+  }
+}

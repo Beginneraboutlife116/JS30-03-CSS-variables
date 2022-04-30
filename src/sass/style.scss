@@ -1,6 +1,9 @@
 @use './base/reset';
+@use './base/typography';
 @use './abstract/variables';
 @use './abstract/animation';
+@use './layout/flex';
 @use './components/wrapper';
+@use './components/title';
 @use './components/cube';
 @use './components/controller'

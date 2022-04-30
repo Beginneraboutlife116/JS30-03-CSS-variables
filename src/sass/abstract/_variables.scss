@@ -1,5 +1,17 @@
+$colors: ('red': red, 'green': green, 'blue': blue, 'alpha': 'alpha');
+
 :root {
   --min-width: 8rem;
   --max-width: 15rem;
   --width: clamp(var(--min-width), 30vw, var(--max-width));
+  --bg-color: initial;
+  --controller-clr: initial;
+  --controller-filter-clr: initial;
+  --border-clr: initial;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-clr: #2a2a2a;
+  }
 }

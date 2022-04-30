@@ -1,0 +1,10 @@
+.title {
+  position: absolute;
+  inset: 2rem auto auto 2rem;
+  line-height: 1.2;
+  background-image: linear-gradient(to right, red, orange, green, blue, purple);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  user-select: none;
+}

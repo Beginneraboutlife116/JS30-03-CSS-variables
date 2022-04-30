@@ -1,0 +1,28 @@
+@mixin controller-name-color($color) {
+  @if ($color == 'alpha') {
+    color: var(--#{$color}-text, darken(gray, 10));
+  } @else {
+    color: var(--#{$color}-text, darken($color, 10));
+  }
+}
+@mixin controller-bar-track-background($color) {
+  @if ($color == 'alpha') {
+    background-image: linear-gradient(to left, white, gray, black);
+  } @else {
+    background-image: linear-gradient(to left, white, $color, black);
+  }
+}
+@mixin controller-bar-box-shadow($color) {
+  @if ($color == 'alpha') {
+    box-shadow: 0 0 2px 1px gray;
+  } @else {
+    box-shadow: 0 0 2px 1px $color;
+  }
+}
+@mixin controller-bar-focus-style($color) {
+  @if ($color == 'alpha') {
+    outline: 3px solid gray;
+  } @else {
+    outline: 3px solid $color;
+  }
+}

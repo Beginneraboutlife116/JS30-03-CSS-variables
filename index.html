@@ -10,9 +10,9 @@
     <title>03-css-variable</title>
   </head>
   <body>
-    <div class="wrapper">
+    <main class="wrapper">
+      <h1 class="title">Grab, Drag and Switch COLORS~</h1>
       <div class="cube">
-        <!-- 整理一下code，要記得啟用sass --watch -->
         <button
           aria-label="front side of the cube"
           class="cube__side front" data-side="front"
@@ -40,8 +40,8 @@
       </div>
 
       <aside class="controller">
-        <ul class="flex-container">
-          <li class="flex__item">
+        <ul class="flex-container flex__gap controller__container flex_fxd_column">
+          <li class="flex__item flex__gap flex_ai_center">
             <label for="red" class="controller__name red">R</label>
             <input
               id="red"
@@ -52,8 +52,9 @@
               min="0"
               value="128"
             />
+            <p class="color-value">128</p>
           </li>
-          <li class="flex__item">
+          <li class="flex__item flex__gap flex_ai_center">
             <label for="green" class="controller__name green">G</label>
             <input
               id="green"
@@ -64,8 +65,9 @@
               min="0"
               value="128"
             />
+            <p class="color-value">128</p>
           </li>
-          <li class="flex__item">
+          <li class="flex__item flex__gap flex_ai_center">
             <label for="blue" class="controller__name blue">B</label>
             <input
               id="blue"
@@ -76,8 +78,9 @@
               min="0"
               value="128"
             />
+            <p class="color-value">128</p>
           </li>
-          <li class="flex__item">
+          <li class="flex__item flex__gap flex_ai_center">
             <label for="alpha" class="controller__name alpha">A</label>
             <input
               id="alpha"
@@ -88,10 +91,11 @@
               min="0"
               value="50"
             />
+            <p class="color-value">50</p>
           </li>
         </ul>
       </aside>
-    </div>
+    </main>
     <script src="main.js"></script>
   </body>
 </html>
