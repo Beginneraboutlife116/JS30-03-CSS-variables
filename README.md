@@ -79,21 +79,15 @@ Users should be able to:
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
-
-## Author
-
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
+- [A Complete Guide to Custom Properties](https://css-tricks.com/a-complete-guide-to-custom-properties/): It includes lots of resource about how other awesome usage by CSS custom properties.
+  - [How to Play and Pause CSS Animations with CSS Custom Properties](https://css-tricks.com/how-to-play-and-pause-css-animations-with-css-custom-properties/)
+  - [Patterns for Practical CSS Custom Properties Use](https://css-tricks.com/patterns-for-practical-css-custom-properties-use/)
+  - [Breaking CSS Custom Properties out of :root Might Be a Good Idea](https://css-tricks.com/breaking-css-custom-properties-out-of-root-might-be-a-good-idea/)
+- [How CSS Perspective Works](https://css-tricks.com/how-css-perspective-works/)
+- [Two-way data binding in Vanilla JavaScript without Angular or React](https://medium.com/developers-arena/two-way-data-binding-in-vanilla-javascript-without-angular-or-react-223ddbb1252d)
+- [Classes - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
 
 ## Acknowledgments
 
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+- [Kevin Powell(I think he is CSS magician): 3D CSS - lighting, animations, and more!](https://www.youtube.com/watch?v=NdftnCDwKaU)
+- [Amit Sheen(and I think he is CSS wizard)](https://amitsh.com/)
