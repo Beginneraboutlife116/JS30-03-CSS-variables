@@ -4,7 +4,7 @@
   margin: auto;
   transform-style: preserve-3d;
   position: relative;
-  transform: rotateX(var(--rotate-x-deg, 0deg)) rotateY(var(--rotate-y-deg, 0deg));
+  transform: rotateX(var(--rotate-vertical-deg, 0deg)) rotateY(var(--rotate-horizontal-deg, 0deg));
   &__side {
     --cube-translateZ: translateZ(calc(var(--width) / 2));
   

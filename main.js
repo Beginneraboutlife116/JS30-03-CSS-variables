@@ -80,60 +80,38 @@ let currentX = 0
 let currentY = 0
 let horizontalUnitDegree = 180 / interface.clientWidth
 let verticalUnitDegree = 180 / interface.clientHeight
-let isGrabbing = false
+let isProcessing = false
 
 // * Functions
-function changeColorAndValueText() {
-  const colorName = this.name
-  const colorValue = this.name !== 'alpha' ? this.value : `${this.value}%`
-  sideData[clickedSideName][colorName] = colorValue
-  sideData[clickedSideName].setColorProperty(colorName)
-  this.nextElementSibling.textContent = colorValue.toString()
+function handleClickDown(event, gesture = '') {
+  if (event.target !== interface) return
+  beginningX = event.clientX ?? event.changedTouches[0].clientX
+  beginningY = event.clientY ?? event.changedTouches[0].clientY
+  interface.style.setProperty('--pointer-style', gesture)
+  isProcessing = true
 }
-
-// * Actions
-// change unit degree based on interface's ratio
-window.addEventListener('resize', () => {
-  horizontalUnitDegree = 180 / interface.clientWidth
-  verticalUnitDegree = 180 / interface.clientHeight
-})
-
-// start rotating
-interface.addEventListener('mousedown', (e) => {
-  if (e.target !== interface) return
-  beginningX = e.clientX
-  beginningY = e.clientY
-  interface.style.setProperty('--pointer-style', 'grabbing')
-  isGrabbing = true
-})
-// in the progress of rotating
-interface.addEventListener('mousemove', (e) => {
-  if (!isGrabbing) return
-  cube.style.setProperty('--cube-pointer', 'grabbing')
-  currentX = e.clientX
-  currentY = e.clientY
-  if (currentX !== beginningX) {
-    currentHorizontalDegree += (currentX - beginningX) * horizontalUnitDegree
-    cube.style.setProperty('--rotate-x-deg', `${currentVerticalDegree}deg`)
-    beginningX = currentX
+function handleCubeMove(event, gesture = '') {
+  if (!isProcessing) return
+  cube.style.setProperty('--cube-pointer', gesture)
+  currentX = event.clientX ?? event.changedTouches[0].clientX
+  currentY = event.clientY ?? event.changedTouches[0].clientY
+  handleRotateDegree(beginningX, beginningY, currentX, currentY)
+}
+function handleRotateDegree(x1, y1, x2, y2) {
+  if (x2 !== x1) {
+    currentHorizontalDegree += (x2 - x1) * horizontalUnitDegree
+    cube.style.setProperty('--rotate-horizontal-deg', `${currentHorizontalDegree}deg`)
+    beginningX = x2
   }
-  if (currentY !== beginningY) {
-    currentVerticalDegree += (beginningY - currentY) * verticalUnitDegree
-    cube.style.setProperty('--rotate-y-deg', `${currentHorizontalDegree}deg`)
-    beginningY = currentY
+  if (y2 !== y1) {
+    currentVerticalDegree += (y1 - currentY) * verticalUnitDegree
+    cube.style.setProperty('--rotate-vertical-deg', `${currentVerticalDegree}deg`)
+    beginningY = y2
   }
-})
-// rotation end
-interface.addEventListener('mouseup', (e) => {
-  isGrabbing = false
-  interface.style.setProperty('--pointer-style', '')
-  cube.style.setProperty('--cube-pointer', '')
-})
-
-// select specific side and double binding
-cube.addEventListener('click', (e) => {
-  if (clickedSideName === e.target.dataset.side) return
-  clickedSideName = e.target.dataset.side
+}
+function handleCubeClick() {
+  if (clickedSideName === event.target.dataset.side) return
+  clickedSideName = event.target.dataset.side
   colorInputs.forEach(input => {
     switch (input.name) {
       case 'red': 
@@ -154,5 +132,49 @@ cube.addEventListener('click', (e) => {
         break
     }
     input.addEventListener('input', changeColorAndValueText)
+    input.addEventListener('touchstart', changeColorAndValueText)
   })
+}
+function changeColorAndValueText() {
+  const colorName = this.name
+  const colorValue = this.name !== 'alpha' ? this.value : `${this.value}%`
+  sideData[clickedSideName][colorName] = colorValue
+  sideData[clickedSideName].setColorProperty(colorName)
+  this.nextElementSibling.textContent = colorValue.toString()
+}
+
+// * Actions
+// change unit degree based on interface's ratio
+window.addEventListener('resize', () => {
+  horizontalUnitDegree = 180 / interface.clientWidth
+  verticalUnitDegree = 180 / interface.clientHeight
 })
+// start rotating
+interface.addEventListener('mousedown', e => {
+  handleClickDown(e, 'grabbing')
+})
+interface.addEventListener('touchstart', e => {
+  handleClickDown(e)
+})
+// in the progress of rotating
+interface.addEventListener('mousemove', e => {
+  handleCubeMove(e, 'grabbing')
+})
+interface.addEventListener('touchmove', e => {
+  e.preventDefault()
+  handleCubeMove(e, '')
+})
+// rotation end
+interface.addEventListener('mouseup', e => {
+  handleMove(e, '')
+  isProcessing = false
+  interface.style.setProperty('--pointer-style', '')
+})
+interface.addEventListener('touchend', e => {
+  handleMove(e, '')
+  isProcessing = false
+})
+
+// select specific side and double binding
+cube.addEventListener('mousedown', handleCubeClick)
+cube.addEventListener('touchstart', handleCubeClick)
