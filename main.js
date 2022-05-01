@@ -166,12 +166,12 @@ interface.addEventListener('touchmove', e => {
 })
 // rotation end
 interface.addEventListener('mouseup', e => {
-  handleMove(e, '')
+  handleCubeMove(e, '')
   isProcessing = false
   interface.style.setProperty('--pointer-style', '')
 })
 interface.addEventListener('touchend', e => {
-  handleMove(e, '')
+  handleCubeMove(e, '')
   isProcessing = false
 })
 
