@@ -1,0 +1,18 @@
+@use 'sass:color';
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #{color.adjust(black, $lightness: 10%)};
+    --border-color: #{color.adjust(white, $blackness: 5%)};
+
+    --controller-color: #{color.adjust(white, $blackness: 100%)};
+    --controller-box-shadow-color: white;
+
+    --red-text: #{color.adjust(red, $lightness: 5%)};
+    --green-text: #{color.adjust(green, $lightness: 20%)};
+    --blue-text: #{color.adjust(blue, $lightness: 10%)};
+    --alpha-text: #{color.adjust(gray, $lightness: 20%)};
+
+    --title-text-background: linear-gradient(to right, var(--red-text), #{color.adjust(orange, $lightness: 20%)}, var(--green-text), var(--blue-text), #{color.adjust(purple, $lightness: 50%)});
+  }
+}

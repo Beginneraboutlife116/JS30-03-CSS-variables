@@ -88,6 +88,17 @@ html, body {
   --title-text-background: linear-gradient(to right, var(--red-text), #e69500, var(--green-text), var(--blue-text), purple);
 }
 
+@keyframes shinny {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-color: #1a1a1a;
@@ -99,17 +110,6 @@ html, body {
     --blue-text: #3333ff;
     --alpha-text: #b3b3b3;
     --title-text-background: linear-gradient(to right, var(--red-text), #ffc966, var(--green-text), var(--blue-text), #ff80ff);
-  }
-}
-@keyframes shinny {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
   }
 }
 .flex-container {
