@@ -38,8 +38,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [GitHub](https://github.com/Beginneraboutlife116/JS30-03-CSS-variables)
+- Live Site URL: [live site URL](https://beginneraboutlife116.github.io/JS30-03-CSS-variables/)
 
 ## My process
 
@@ -51,36 +51,31 @@ Users should be able to:
 - CSS Grid
 - Mobile-first workflow
 - SASS
+- JS class
+- Touch Event
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
-
-To see how you can add code snippets, see below:
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
-```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
-}
-```
-
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
-
-**Note: Delete this note and the content within this section and replace with your own learnings.**
-
+- In this challenge, I have reviewed this article: [A Complete Guide to Custom Properties](https://css-tricks.com/a-complete-guide-to-custom-properties/) about whole concept.
+  - What I have learned from this article are:
+    1. CSS custom properties could make CSS value be more semantic.
+    2. CSS custom properties are good for color-theme changing.
+    3. CSS custom properties have scope effect. That is if the parent or itself has CSS custom property, their child or pseudo-class, pseudo-element could use this CSS custom property to set the style.
+    4. CSS custom properties also have better control on animation start or pause.
+- I also learned how to make 3D element by using perspective and make the cube.
+  - We need to set `perspective` and `perspective-origin` on the parent element.
+  - And then, we also need to set `transform-style: preserve-3d;` on the element you want to look as 3D.
+- Using some Sass techniques to help me cut down my time to write too much CSS code:
+  - especially when I was styling my range input, because there were a lot of `-webkit-`, `-moz-` for specific color input, I tried to use `@each`, `@if`, `@else`, `@mixin`, `@include` to help me just putting a `$colors` list to achieve all styling.
+- I also practice how to write a class, and in this practice, I also try to use `get` and `set` to make some called **two-way binding**.
+  - I think I'm mimic that from Vue, but still not sure.
+- Also, at last, I make some touch event for mobile case, like `touchstart`, `touchmove`, `touchend` to achieve cube rotation as like using mouse.
+  - But in the input on mobile, I still need to solve the issue why I can't adjust input value directly. Still trying.
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+- I still try to make mobile use case fluently, especially on the range input input.
+- Improve some user experience from my friends. Like:
+  - Hide the input controller until any cube side has been clicked.
 
 ### Useful resources
 
