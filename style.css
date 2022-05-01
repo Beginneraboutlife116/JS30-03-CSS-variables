@@ -79,8 +79,8 @@ html, body {
   --width: clamp(var(--min-width), 30vw, var(--max-width));
   --bg-color: #f3f3f3;
   --border-color: #1a1a1a;
-  --controller-clr: #e8e8e8;
-  --controller-filter-clr: black;
+  --controller-color: #e8e8e8;
+  --controller-box-shadow-color: black;
   --red-text: #cc0000;
   --green-text: #004d00;
   --blue-text: #0000cc;
@@ -92,8 +92,8 @@ html, body {
   :root {
     --bg-color: #1a1a1a;
     --border-color: #f3f3f3;
-    --controller-clr: gray;
-    --controller-filter-clr: white;
+    --controller-color: gray;
+    --controller-box-shadow-color: white;
     --red-text: #ff1a1a;
     --green-text: #00e600;
     --blue-text: #3333ff;
@@ -216,8 +216,8 @@ html, body {
   inset: auto auto 2rem 2rem;
   padding-block: 1rem;
   border-radius: 1rem;
-  background-color: var(--controller-clr, #eee);
-  filter: drop-shadow(0 0 0.5rem var(--controller-filter-clr));
+  background-color: var(--controller-color);
+  box-shadow: 0 0 1rem var(--controller-box-shadow-color);
   font-size: 1.25rem;
   cursor: auto;
   user-select: none;

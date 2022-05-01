@@ -8,8 +8,8 @@
   inset: auto auto 2rem 2rem;
   padding-block: 1rem;
   border-radius: 1rem;
-  background-color: var(--controller-clr, #eee);
-  filter: drop-shadow(0 0 0.5rem var(--controller-filter-clr));
+  background-color: var(--controller-color);
+  box-shadow: 0 0 1rem var(--controller-box-shadow-color);
   font-size: 1.25rem;
   cursor: auto;
   user-select: none;

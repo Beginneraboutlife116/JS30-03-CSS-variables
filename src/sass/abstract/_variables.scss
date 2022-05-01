@@ -11,8 +11,8 @@ $colors: ('red', 'green', 'blue', 'alpha');
   --bg-color: #{color.adjust(white, $blackness: 5%)};
   --border-color: #{color.adjust(black, $lightness: 10%)};
 
-  --controller-clr: #{color.adjust(white, $blackness: 10%)};
-  --controller-filter-clr: black;
+  --controller-color: #{color.adjust(white, $blackness: 10%)};
+  --controller-box-shadow-color: black;
   
   --red-text: #{color.adjust(red, $blackness: 20%)};
   --green-text: #{color.adjust(green, $blackness: 20%)};
@@ -27,8 +27,8 @@ $colors: ('red', 'green', 'blue', 'alpha');
     --bg-color: #{color.adjust(black, $lightness: 10%)};
     --border-color: #{color.adjust(white, $blackness: 5%)};
 
-    --controller-clr: #{color.adjust(white, $blackness: 100%)};
-    --controller-filter-clr: white;
+    --controller-color: #{color.adjust(white, $blackness: 100%)};
+    --controller-box-shadow-color: white;
 
     --red-text: #{color.adjust(red, $lightness: 5%)};
     --green-text: #{color.adjust(green, $lightness: 20%)};
