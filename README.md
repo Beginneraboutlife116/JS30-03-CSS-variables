@@ -32,8 +32,8 @@ Users should be able to:
 ![desktop-dark-theme](./src/asset/screenshots/desktop-dark-theme.png)
 ![desktop-light-theme](./src/asset/screenshots/desktop-light-theme.png)
 <div style='display: flex;'>
-  <img src="./src/asset/screenshots/mobile-dark-theme.png" alt="mobile-dark-theme" style="width: 50%">
-  <img src="./src/asset/screenshots/mobile-light-theme.png" alt="mobile-light-mode" style="width: 50%">
+  <img src="./src/asset/screenshots/mobile-dark-theme.png" alt="mobile-dark-theme" width="50%">
+  <img src="./src/asset/screenshots/mobile-light-theme.png" alt="mobile-light-mode" width="50%">
 </div>
 
 ### Links
